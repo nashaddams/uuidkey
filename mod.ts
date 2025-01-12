@@ -1,12 +1,14 @@
 import { Command } from "@cliffy/command";
-import denoJson from "./deno.json" with { type: "json" };
 import { decode, encode, generate, validate } from "./src/uuidkey.ts";
+
+/** @internal */
+export const VERSION = "0.1.1";
 
 if (import.meta.main) {
   await new Command()
     .name("uuidkey")
     .description("Encode UUIDs to readable keys.")
-    .version(denoJson.version)
+    .version(VERSION)
     .command("encode", "Encode UUID to UUID key.")
     .arguments("<uuid:string>")
     .action((_, uuid) => console.info(encode(uuid)))
